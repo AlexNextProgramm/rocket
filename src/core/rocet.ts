@@ -398,7 +398,8 @@ export class Rocet extends RocetObject {
     })
   }
 
-  public text(str: string | null = null) {
+  public text(str: string | null = null)
+  {
     if (str === null) {
       return this.Elements[0].textContent;
     } else {

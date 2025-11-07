@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 function cssLoaders(extra = null) {
     const loaders = [
-        (new MiniCssExtractPlugin()).loader,
+        MiniCssExtractPlugin.loader,
         {
             loader: 'css-loader',
             options: {
@@ -32,7 +32,6 @@ module.exports = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
-
             {
           test: /\.s[ac]ss$/, use: [...cssLoaders({
             loader: 'sass-loader',
@@ -62,7 +61,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './test/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename:"./test/[name][hash].css"
         })
+
     ],
     devServer: {
         static: './web',
