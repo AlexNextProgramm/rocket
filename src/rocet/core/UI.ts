@@ -3,7 +3,7 @@ import { Rocet } from "./rocet";
 
 export class UI{
     private Elements: HTMLElement[] = [];
-    public callback: Function = null;
+    public callback: Function|null = null;
     public events: Array<Function> = [];
     private renderObserver:Function
     public countElemets = 0; 
@@ -21,9 +21,9 @@ export class UI{
         }
     }
 
-    public render(renderFunction: Function | undefined = undefined) {
+    public render(renderFunction: Function) {
         if (this.Elements.length == 0) { 
-            this.renderObserver = renderFunction;
+            this.renderObserver = renderFunction as Function;
             return;
         }
         this.Elements.forEach((element:HTMLElement) => {

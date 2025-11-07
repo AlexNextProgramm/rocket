@@ -108,7 +108,7 @@ Element.prototype.hasEventListeners = function (
 {
   if (!this.eventListenerList) return false;
 
-  if (this.eventListenerList[type])
+  if (this?.eventListenerList[type as any] !== undefined)
     return true;
 
   return false;

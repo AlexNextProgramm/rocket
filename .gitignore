@@ -2,4 +2,3 @@
 /dist
 *-lock.json
 *.config.js
-tsconfig.json

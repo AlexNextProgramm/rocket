@@ -16,7 +16,8 @@ export class Rocet extends RocetObject {
   private ExecAfter: Array<Function> = [];
   public ExecElements: Array<Function> = [];
   public Elements: Array<HTMLElement> = [];
-  private renderObserver: Function = null;
+  private renderObserver: Function;
+
   constructor(data: string | HTMLElement | RocetElement | EventTarget | null = null) {
     super()
     if (data instanceof RocetNode) {
@@ -53,13 +54,13 @@ export class Rocet extends RocetObject {
         return undefined;
       },
 
-      set(target: any, prop: string | symbol, value) {
+      set(target:any, prop: string | symbol, value) {
         const protoProps = Object.getOwnPropertyNames(Object.getPrototypeOf(target));
         if (protoProps.includes(prop as string) && typeof target[prop] != 'function') {
           target[prop] = value;
           return true;
         }
-        this.Elements.forEach((el: any) => el[prop] = value);
+        target.Elements.forEach((el: any) => el[prop] = value);
         return true;
       }
 
@@ -98,7 +99,7 @@ export class Rocet extends RocetObject {
     }
     const arr: Array<HTMLElement> = [];
     this.Elements.forEach((el: HTMLElement, i) => {
-      let RNode: RocetNode;
+      let RNode: RocetNode|null ;
       if (typeof rocet == 'function') RNode = rocet(this, i);
       if (RNode instanceof RocetNode) {
         const newElm = this.create(RNode)
@@ -238,7 +239,7 @@ export class Rocet extends RocetObject {
 
   public val(value: string | null = null) {
     if (typeof value == 'string') {
-      this.Elements.forEach((el: ElementEvent) => {
+      this.Elements.forEach((el: any) => {
         el.value = value
         el.setAttribute('value', value);
       })
