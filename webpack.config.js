@@ -23,9 +23,10 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
+                test: /\.(ts|tsx|jsx)?$/,
+                exclude: [/node_modules/, /src/],
+                loader: "ts-loader",
+                options: { configFile: "tsconfig.json" }
             },
             {
                 test: /\.css$/i,
@@ -47,6 +48,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+         alias: {
+                '@rocet': path.resolve(__dirname, 'dist/src'),
+            }
     },
     output: {
         filename: './bundle.js',

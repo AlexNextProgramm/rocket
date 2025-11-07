@@ -13,7 +13,7 @@ export interface EventChangeValue{
 
 // Подстраиваем под свои аттрибуты 
 // Нужно описать интерфейс style
-declare module "react" {
+declare module react {
     interface Attributes extends attribute{
      style?:any
     }
@@ -22,7 +22,7 @@ declare module "react" {
 declare global {
     namespace JSX {
       interface IntrinsicElements {
-        [name:string]: any;
+       [name:string]: any;
       }
     }
   }

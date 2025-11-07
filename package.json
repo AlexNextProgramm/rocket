@@ -2,8 +2,7 @@
   "name": "rocet-react",
   "version": "1.0.0",
   "description": "lib",
-  "main": "/dist/rocet/rocet.js",
-  "module": "build/index.esm.js",
+  "main": "/dist/src/core/rocet.js",
   "types": "/dist/rocet/rocet.d.ts",
   "files": [
     "dist",
